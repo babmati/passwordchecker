@@ -15,6 +15,9 @@ def request_api_data(query_char):
         raise RuntimeError(f" Error Fetching: {res.status_code}, check the api and try again")
     return res
 
+def read_res(response):
+    print(response.text)
+
 
 def get_password_leaks_count(hashes, hash_to_check):
     hashes = (line.split(':') for line in hashes.text.splitlines())
@@ -35,6 +38,8 @@ def pwned_api_check(password):
     #print(first5_char, tail)
     #print(response)
     return get_password_leaks_count(response, tail)
+    #return read_res(response)
+
 
 
 
@@ -46,8 +51,9 @@ def main(args):
         if count:
             print(f'{password} was found {count} times..  you should probably change your password')
         else:
-            print(f'{password} was not found. Carry on!')
+            print(f'{password} was NOT found. Carry on!')
 
     return 'Done!'
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))
