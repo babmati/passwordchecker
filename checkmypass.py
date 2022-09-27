@@ -38,7 +38,7 @@ def pwned_api_check(password):
     #print(first5_char, tail)
     #print(response)
     return get_password_leaks_count(response, tail)
-    #return read_res(response)
+    #return read_res(response)  #this was just to read what hash has
 
 
 
